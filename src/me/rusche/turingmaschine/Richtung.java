@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package turingmaschine;
+package me.rusche.turingmaschine;
 
 /**
  *
  * @author Dirk Rusche <dirk@rusche.me>
  */
- enum Direction {
+ enum Richtung {
     l, r, s
-    
 }
