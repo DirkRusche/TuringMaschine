@@ -20,16 +20,27 @@ public class Main {
     public static void main(String[] args) throws Exception {       
         HashSet<Uebergang> transitions = new HashSet<>();
         
-        transitions.add(new Uebergang("q0", '0', "q0", '0', Richtung.r));
-        transitions.add(new Uebergang("q0", '1', "q0", '1', Richtung.r));
-        transitions.add(new Uebergang("q0", "q1", Richtung.l));
+        transitions.add(new Uebergang("q0", 'a', "q1", 'x', Richtung.s));
+	transitions.add(new Uebergang("q0", 'b', "q0", 'b', Richtung.r));
+	transitions.add(new Uebergang("q0", 'x', "q0", 'x', Richtung.r));
+        transitions.add(new Uebergang("q0", "q4", Richtung.l));
         
-        transitions.add(new Uebergang("q1", '0', "q1", '0', Richtung.l));
-        transitions.add(new Uebergang("q1", '1', "q2", '0', Richtung.l));
-        
-        transitions.add(new Uebergang("q2", '0', "q1", '1', Richtung.l));
-        transitions.add(new Uebergang("q2", '1', "q2", '1', Richtung.l));
-        transitions.add(new Uebergang("q2", null, "q3", '1', Richtung.s));
+        transitions.add(new Uebergang("q1", 'a', "q1", 'a', Richtung.l));
+	transitions.add(new Uebergang("q1", 'b', "q1", 'b', Richtung.l));
+	transitions.add(new Uebergang("q1", 'x', "q1", 'x', Richtung.l));
+        transitions.add(new Uebergang("q1", "q2", Richtung.r));
+	
+	transitions.add(new Uebergang("q2", 'a', "q2", 'a', Richtung.r));
+	transitions.add(new Uebergang("q2", 'b', "q3", 'x', Richtung.s));
+	transitions.add(new Uebergang("q2", 'x', "q2", 'x', Richtung.r));
+	
+	transitions.add(new Uebergang("q3", 'a', "q3", 'x', Richtung.l));
+	transitions.add(new Uebergang("q3", 'b', "q3", 'b', Richtung.l));
+	transitions.add(new Uebergang("q3", 'x', "q3", 'x', Richtung.l));
+        transitions.add(new Uebergang("q3", "q0", Richtung.r));
+	
+	transitions.add(new Uebergang("q4", 'x', "q4", 'x', Richtung.l));
+        transitions.add(new Uebergang("q4", "qF", Richtung.r));
 	
 	
 	ByteArrayOutputStream bo = new ByteArrayOutputStream();
@@ -48,12 +59,14 @@ public class Main {
         states.add("q1");
         states.add("q2");
         states.add("q3");
+	states.add("q4");
+	states.add("qF");
         
         Set<Character> bandalphabet = new HashSet<>();
         bandalphabet.addAll(alphabet);
         
         Set<String> finalstate = new HashSet<>();
-        finalstate.add("q3");
+        finalstate.add("qF");
         
         String startstate = "q0";
         
